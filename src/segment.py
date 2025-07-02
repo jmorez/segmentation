@@ -1,7 +1,5 @@
 import torchvision
 from torchvision import models, transforms
-from torchvision.models.mobilenetv2 import MobileNet_V2_Weights
-from torchvision.models.detection.anchor_utils import AnchorGenerator
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
