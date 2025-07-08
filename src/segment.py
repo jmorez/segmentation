@@ -5,7 +5,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 
-fp = r"/home/jan/Downloads/WhatsApp Image 2025-07-02 at 12.44.50.jpeg"
+fp = r"data/image.jpeg"
 
 img = Image.open(fp=fp)
 x = np.array(img)
