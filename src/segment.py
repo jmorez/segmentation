@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 fp = r"data/image.jpeg"
 
 img = Image.open(fp=fp)
-x = np.array(img)
 
+#segmentation_model = models.detection.fasterrcnn_resnet50_fpn_v2(weights=torchvision.models.detection.fasterrcnn_resnet50_fpn_v2)
 segmentation_model = models.detection.maskrcnn_resnet50_fpn_v2(weights=torchvision.models.detection.MaskRCNN_ResNet50_FPN_V2_Weights)
 segmentation_model.eval()
 
@@ -68,10 +68,20 @@ img_np = np.array(img)
 
 for ax_idx, mask_idx in enumerate(unique_indices):
     mask = y[0]["masks"][mask_idx, 0].detach().cpu().numpy()
-    score = scores[mask_idx]
+    # Plot image
     axes[ax_idx].imshow(img_np)
-    axes[ax_idx].imshow(mask > 0.5, cmap='jet', alpha=0.5)
+    # Plot mask if available
+    if "masks" in y[0] and y[0]["masks"] is not None and y[0]["masks"].shape[0] > mask_idx:
+        mask = y[0]["masks"][mask_idx, 0].detach().cpu().numpy()
+        axes[ax_idx].imshow(mask > 0.5, cmap='jet', alpha=0.5)
+        
+    # Plot bounding box (always available)
+    box = y[0]["boxes"][mask_idx].detach().cpu().numpy()
+    x1, y1, x2, y2 = box
+    rect = plt.Rectangle((x1, y1), x2 - x1, y2 - y1, fill=False, edgecolor='lime', linewidth=1)
+    axes[ax_idx].add_patch(rect)
     label = labels[mask_idx]
+    score = scores[mask_idx]
     axes[ax_idx].set_title(f"Mask {mask_idx}\nLabel: {label}\nScore: {score:.2f}")
     axes[ax_idx].axis('off')
 
