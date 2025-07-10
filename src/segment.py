@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 
-CONFIG = {"filepath": r"data/image.jpeg", "iou_threshold": 0.9}
+CONFIG = {"filepath": r"data/image.jpeg", "iou_threshold": 0.85}
 
 
 img = Image.open(fp=CONFIG["filepath"])
