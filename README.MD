@@ -1,5 +1,8 @@
-### This is an example of using MaskRCNN with PyTorch to detect objects in images.
+# MaskRCNN with PyTorch to detect and segment objects in an image.
 
-Example output:
+## Example input:
+
+![](data/image.jpeg)
+## Segmentation result
 
 ![After finetuning the Intersect-over-Union threshold, we get a near perfect segmentation result! It does not discriminate between triangles and rectangles, unfortunately.](assets/segmentation_result.png)
