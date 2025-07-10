@@ -91,4 +91,5 @@ for ax in axes[len(unique_segmentation_results) :]:
 
 
 plt.tight_layout()
-plt.show(block=True)
+plt.show(block=False)
+plt.savefig("assets/segmentation_result.png")
