@@ -89,6 +89,4 @@ for ax_idx in range(filtered_num_masks, len(axes)):
     axes[ax_idx].axis('off')
 
 plt.tight_layout()
-plt.show()
-
-pass
+plt.show(block=True)
